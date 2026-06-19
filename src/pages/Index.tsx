@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
+import MimicDemo from '@/components/MimicDemo';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/5a116655-f8cf-45eb-9c57-19c955c1f9cd/files/21b95f27-5ee2-409a-b9dd-e3afe94594cb.jpg';
 
@@ -17,8 +19,10 @@ const mechanics = [
 ];
 
 const Index = () => {
+  const [demoOpen, setDemoOpen] = useState(false);
   return (
     <div className="min-h-screen grain overflow-x-hidden">
+      {demoOpen && <MimicDemo onClose={() => setDemoOpen(false)} />}
       {/* NAV */}
       <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/50">
         <div className="container flex items-center justify-between h-16">
@@ -31,7 +35,7 @@ const Index = () => {
             <a href="#materials" className="hover:text-foreground transition-colors">Материалы</a>
             <a href="#modes" className="hover:text-foreground transition-colors">Режимы</a>
           </nav>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-wider">
+          <Button onClick={() => setDemoOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-wider">
             Играть
           </Button>
         </div>
@@ -54,7 +58,7 @@ const Index = () => {
               Ты — мимик. Притворяйся объектами, собирай тело по пикселям, поглощай материалы и переписывай правила подземелья.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-wider text-base h-12 px-8">
+              <Button size="lg" onClick={() => setDemoOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-wider text-base h-12 px-8">
                 <Icon name="Play" size={18} className="mr-2" /> Начать охоту
               </Button>
               <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-muted font-display uppercase tracking-wider text-base h-12 px-8">
